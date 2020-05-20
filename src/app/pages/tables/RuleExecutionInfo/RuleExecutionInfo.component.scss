@@ -1,0 +1,17 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+  .collumn-padding {
+    padding: 0.3rem 0rem 0rem;
+  } 
+}
+
+.highlightOwner{
+  color: red;
+}
+.highlightOwner2{
+  color: yellow;
+}
