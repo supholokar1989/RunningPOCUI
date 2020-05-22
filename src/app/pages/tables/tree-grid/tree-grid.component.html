@@ -1,34 +1,72 @@
-<nb-card>
-  <nb-card-body>
+<div class="card">  
+    <div class="card-body pb-0">  
+      <div class="row">  
+        <div class="col-12 col-md-12">  
+          <div class="card">  
+            <div class="card-body position-relative">  
+              <div class="table-responsive cnstr-record product-tbl">  
+                <table class="table table-bordered heading-hvr">  
+                  <thead>  
+                    <tr>  
+                      <th> </th>  
+                      <th width="80">RuleExecution Id  
+                      </th>  
+                      <th>Client Id</th>  
+                      <th>Account Id</th>  
+                      <th>Patient Transaction</th>  
+                      <th>Event</th>  
+                      <th>Patient Id</th>  
+                      <th>Patient VisitId</th>  
+                    </tr>  
+                  </thead>  
+                  <tbody *ngFor="let rule of RuleInfo; let i = index">  
+                    <tr>  
+                      <td align="center"> 
+                        <a class="expand-row" *ngIf="!hideme[i]" (click)="showProductCountryInfo(i)" > 
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </a>  
+                        <a class="expand-row" *ngIf="hideme[i]" (click)="hideme[i] = !hideme[i]">
+                          <span class="glyphicon glyphicon-plus"></span>    
+                        </a>  
+                      </td>  
+                      <td align="center">{{rule.ruleExecutionId}}</td>  
+                      <td>{{rule.clientId}}</td>  
+                      <td>{{rule.Price }}</td>  
+                      <td>{{rule.accountId}}</td>  
+                      <td>{{rule.event}}</td>  
+                      <td>{{rule.patientId}}</td>  
+                      <td>{{rule.patientVisitId}}</td>  
+                    </tr>  
 
-    <label class="search-label" for="search">Search:</label>
-    <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input">
-
-    <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
-
-      <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
-      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
-
-      <ng-container [nbTreeGridColumnDef]="customColumn">
-        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
-          {{customColumn}}
-        </th>
-        <td nbTreeGridCell *nbTreeGridCellDef="let row">
-          <ngx-fs-icon [kind]="row.data.kind" [expanded]="row.expanded"></ngx-fs-icon>
-          {{row.data[customColumn]}}
-        </td>
-      </ng-container>
-
-      <ng-container *ngFor="let column of defaultColumns; let index = index"
-                    [nbTreeGridColumnDef]="column"
-                    [showOn]="getShowOn(index)">
-        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
-          {{column}}
-        </th>
-        <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
-      </ng-container>
-
-    </table>
-
-  </nb-card-body>
-</nb-card>
+                    <tr [hidden]="!hideme[i]" class="sub-table no-bg">  
+                      <td align="center"> </td>  
+                      <td colspan="15" class="p-0">  
+                        <table class="table mb-0 table-striped">  
+                          <thead class="bg-dark text-white">  
+                            <tr>  
+                              <th>RuleExecution Error Id</th>  
+                              <th>Rule Id</th>  
+                              <th>Rule Type</th>  
+                              <th>Rule Error</th>  
+                            </tr>  
+                          </thead>  
+                          <tbody>  
+                            <tr *ngFor="let Error of rule.ruleExecutionErrors">  
+                              <td>{{Error.ruleExecutionErrorId}}</td>  
+                              <td>{{Error.ruleId}}</td>  
+                              <td>{{Error.ruleType}}</td>  
+                              <td>{{Error.ruleErrorDescription}}</td>  
+                            </tr>  
+                          </tbody>  
+                        </table>  
+                      </td>  
+                    </tr>  
+                  </tbody>  
+                </table>  
+              </div>  
+            </div>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </div>   

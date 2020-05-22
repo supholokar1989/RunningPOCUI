@@ -13,12 +13,12 @@ import {
   NbIconModule,
   NbListModule,
   NbSpinnerModule,
+  NbDialogModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { TablesRoutingModule, routedComponents } from './tables-routing.module';
-import { FsIconComponent } from './tree-grid/tree-grid.component';
 import { FormsModule as ngFormsModule } from '@angular/forms';
 import {NgxNotificationsModule} from '@stanvanheumen/ngx-notifications';
 import {NgxTranslationsModule} from '@stanvanheumen/ngx-translations';
@@ -32,6 +32,7 @@ import {NgxTranslationsModule} from '@stanvanheumen/ngx-translations';
     NbActionsModule,
     ReactiveFormsModule,
     NbSpinnerModule,
+    NbDialogModule,
     NbListModule,
     NbButtonModule,
     NbCheckboxModule,
@@ -51,7 +52,6 @@ import {NgxTranslationsModule} from '@stanvanheumen/ngx-translations';
   ],
   declarations: [
     ...routedComponents,
-    FsIconComponent,
   ],
 })
 export class TablesModule { }

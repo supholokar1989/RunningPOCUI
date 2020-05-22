@@ -11,7 +11,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Rule',
-        link: '/pages/tables/Rule-Info',
+        link: '/pages/tables/tree-grid',
       },
     ],
   },

@@ -20,9 +20,11 @@ import { map, catchError } from 'rxjs/operators';
 //   }
 // }
 export class PatientDetailsService {
-  url = 'https://apigateway20200519034558.azurewebsites.net/' 
+        url = 'https://apigateway20200519034558.azurewebsites.net/' 
+   //url = 'http://localhost:8099/' 
   constructor(private httpClient: HttpClient) {}
   getPatientDetailbyVisitID(id) {
+    debugger;
     return this.httpClient.get(this.url + 'registrations/GetPatientsDetailByID/' + id).
         pipe(
            map((data: PatientDetail[]) => {

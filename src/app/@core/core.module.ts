@@ -58,6 +58,8 @@ import { UserDataService } from './mock/user.data.service';
 import {userdata} from './data/users.data';
 import {ClientFacility} from './data/client-facility';
 import{ClientFacilityService} from './mock/client-facility.service';
+import { RuleExecutionErrorInfo } from '../@core/data/Rule-Error'; 
+import {RuleExecutionErrorInfoService} from '../@core/mock/Rule-Error-service';
 
 const socialLinks = [
   {
@@ -79,6 +81,7 @@ const socialLinks = [
 
 const DATA_SERVICES = [
   { provide: UserData, useClass: UserService },
+  { provide: RuleExecutionErrorInfo, useClass: RuleExecutionErrorInfoService },
   { provide: ClientFacility, useClass: ClientFacilityService },
   { provide: PatientDetail, useClass: PatientDetailsService },
   { provide: ElectricityData, useClass: ElectricityService },

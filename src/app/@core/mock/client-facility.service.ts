@@ -11,10 +11,12 @@ import { ClientFacility } from '../data/client-facility';
   
 export class ClientFacilityService { 
 
-    url = 'https://apigateway20200519034558.azurewebsites.net/' 
+        url = 'https://apigateway20200519034558.azurewebsites.net/' 
+     //url = 'http://localhost:8099/' 
 
     constructor(private http: HttpClient) { }  
   getFacilityByClientId(id): Observable<ClientFacility[]> {  
+    debugger;
     return this.http.get<ClientFacility[]>(this.url + 'Client/' + id);  
   }  
 }

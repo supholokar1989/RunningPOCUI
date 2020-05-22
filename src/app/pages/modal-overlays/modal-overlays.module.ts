@@ -13,7 +13,8 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 
-// modules
+// modulesclear
+
 import { ThemeModule } from '../../@theme/theme.module';
 import { ModalOverlaysRoutingModule } from './modal-overlays-routing.module';
 

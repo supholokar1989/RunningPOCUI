@@ -9,6 +9,7 @@ import {ClientFacilityService} from '../../../@core/mock/client-facility.service
 import { ClientFacility } from '../../../@core/data/client-facility';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import {NotificationsService} from '@stanvanheumen/ngx-notifications';
+import { NewComponent } from '../RuleExecutionInfo/button.render.component';
 
 
 
@@ -42,7 +43,19 @@ export class SmartTableComponent implements OnInit {
 
   }
   settings = {
-    actions:false,
+    // actions:false,
+    actions: {
+      add: false,
+      edit: false,
+      delete: false,
+      custom: [ {
+        name: 'View Detail',
+        title: '<i class="ion-document text-align:center" title="View Detail"></i>'
+      }],
+      columnTitle: 'Actions'
+
+    },
+
     columns: {
       AccountNumber: {
         title: 'ACCOUNT',
@@ -71,6 +84,15 @@ export class SmartTableComponent implements OnInit {
       Gender: {
         title: 'GENDER',
         type: 'string',
+      },
+      label: {
+        title: '',
+        type: 'custom',
+        valuePrepareFunction: (cell, row) => {
+          debugger;
+          return row.PatientVisitID;
+        },
+        renderComponent: NewComponent,
       },
     },
   };

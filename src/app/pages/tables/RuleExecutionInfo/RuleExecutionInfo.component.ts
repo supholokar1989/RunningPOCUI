@@ -1,5 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import { NbDialogRef } from '@nebular/theme';
+import {RuleExecutionErrorInfoService} from '../../../@core/mock/Rule-Error-service';
+import {RuleExecutionErrorInfo, RuleErrorInfo} from '../../../@core/data/Rule-Error';
+
 
 
 
@@ -11,64 +15,61 @@ import { LocalDataSource } from 'ng2-smart-table';
   styleUrls: ['RuleExecutionInfo.component.scss'],
   templateUrl: 'RuleExecutionInfo.component.html',
 })
-export class RuleExecutionInfoComponent implements OnInit, OnDestroy {
+export class RuleExecutionInfoComponent implements OnInit {
 
-  
+  @Input() PatientVisitId: string;
+  RuleInfo: RuleExecutionErrorInfo[];
+  RuleErrorInformation: any = []; 
+  constructor(protected ref: NbDialogRef<RuleExecutionInfoComponent>, 
+                            private service: RuleExecutionErrorInfoService) {}
   settings = {
     actions:false,
-    hideSubHeader: true,
-    columns: {
-      RuleExecutionErrorId: {
-        title: 'ID',
+     columns: {
+      ruleExecutionErrorId: {
+        title: 'Rule Execution Id',
         type: 'number',
       },
-      RuleErrorDescription: {
-        title: 'Rule Description',
+      ruleId: {
+        title: 'Rule Id',
+        type: 'number',
+      },
+      ruleType: {
+        title: 'Rule Type',
+        type: 'number',
+      },
+      ruleErrorDescription: {
+        title: 'Error Description',
         type: 'string',
       },
-      RuleType: {
-        title: 'Error Type',
-        type: 'html',
-        rowClassFunction: (RuleType) => {
-          debugger;
-          if (RuleType === 1) {
-            return 'highlightOwner';
-          } else if (RuleType === 2) {
-            return 'highlightOwner2';
-          }
-          return '';
-        }
+      ruleExecutionId: {
+        title: 'Execution Id',
+        type: 'number',
       },
     },
   };
-  
-  
   source: LocalDataSource = new LocalDataSource();
-
-  ngOnInit(): void {
-    this.source.load(this.data);
+  loading = false;
+  ngOnInit() { 
+    this.loading = true;
+    this.getRuleError()   
+  } 
+  dismiss() {
+    this.ref.close();
   }
-
-    ngOnDestroy() {
-    }
-
-    data = [
-      {
-        RuleExecutionErrorId: 1,
-        RuleErrorDescription: 'Leanne Graham',
-        RuleType: 1
-      },
-      {
-        RuleExecutionErrorId: 2,
-        RuleErrorDescription: 'Ervin Howell',
-        RuleType: 2
-      },
-      {
-        RuleExecutionErrorId: 3,
-        RuleErrorDescription: 'Clementine Bauch',
-        RuleType: 3
+  public getRuleError() {  
+    let data = [];  
+    debugger;
+    this.service.getRuleErrorbyVisitID(Number(this.PatientVisitId)).subscribe((data: any) => {  
+      this.RuleInfo = data.map((elem: RuleExecutionErrorInfo[]) => elem); 
+      debugger;
+      for (var value in this.RuleInfo){
+          this.RuleErrorInformation = this.RuleInfo[value].ruleExecutionErrors
       }
-   ];
+      this.source.load(this.RuleErrorInformation); 
+      debugger;
+      this.loading =false;
+    })  
+  } 
   
 }
   

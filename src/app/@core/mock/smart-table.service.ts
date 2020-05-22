@@ -11,7 +11,8 @@ import { SmartTableData } from '../data/smart-table';
   
 export class SmartTableService {  
   //url = 'http://mysqlfhirservice.azurewebsites.net/api/registrations'; 
-  url = 'https://apigateway20200519034558.azurewebsites.net/' 
+          url = 'https://apigateway20200519034558.azurewebsites.net/' 
+            //url = 'http://localhost:8099/' 
   constructor(private http: HttpClient) { }  
   getAllEmployee(parameters: HttpParams): Observable<SmartTableData[]> {  
     return this.http.get<SmartTableData[]>(this.url + 'patientsearch', {params: parameters});  
