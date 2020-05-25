@@ -49,10 +49,9 @@ export class SmartTableComponent implements OnInit {
       edit: false,
       delete: false,
       custom: [ {
-        name: 'View Detail',
-        title: '<i class="ion-document text-align:center" title="View Detail"></i>'
+        title: '<i class="ion-document" title="View Detail"></i>'
       }],
-      columnTitle: 'Actions'
+      columnTitle: 'Action'
 
     },
 

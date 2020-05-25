@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: runningpocui-container
-        image: ipascontreg.azurecr.io/runningpocui:v2
+        image: ipascontreg.azurecr.io/runningpocui:v3
         resources:
           limits:
             memory: "128Mi"

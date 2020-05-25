@@ -24,6 +24,10 @@ export class RuleExecutionInfoComponent implements OnInit {
                             private service: RuleExecutionErrorInfoService) {}
   settings = {
     actions:false,
+    pager: {
+      display: true,
+      perPage: 5
+    },
      columns: {
       ruleExecutionErrorId: {
         title: 'Rule Execution Id',
@@ -63,9 +67,9 @@ export class RuleExecutionInfoComponent implements OnInit {
       this.RuleInfo = data.map((elem: RuleExecutionErrorInfo[]) => elem); 
       debugger;
       for (var value in this.RuleInfo){
-          this.RuleErrorInformation = this.RuleInfo[value].ruleExecutionErrors
+          this.RuleErrorInformation.push(this.RuleInfo[value].ruleExecutionErrors)
       }
-      this.source.load(this.RuleErrorInformation); 
+      this.source.load(this.RuleErrorInformation.flat(1)); 
       debugger;
       this.loading =false;
     })  
